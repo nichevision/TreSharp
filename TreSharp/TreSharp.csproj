@@ -3,7 +3,7 @@
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFramework>netstandard1.1</TargetFramework>
     <AssemblyName>TreSharp</AssemblyName>
     <RootNamespace>TreSharp</RootNamespace>
     
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Win32NativeTREFiles Include="$(MSBuildThisFileDirectory)\lib\win32\*.dll"/>
+    <Win32NativeTREFiles Include="$(MSBuildThisFileDirectory)\lib\win32\*.dll" />
     <Content Include="@(Win32NativeTREFiles)" Condition="'$(OS)' != 'Unix'" CopyToOutputDirectory="PreserveNewest">
         <Link>%(Filename)%(Extension)</Link>
     </Content>
