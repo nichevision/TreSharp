@@ -1,9 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project>
+
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
     <AssemblyName>TreSharp</AssemblyName>
     <RootNamespace>TreSharp</RootNamespace>
+    
+    <IsOSX Condition="Exists('/Library/Frameworks') and Exists ('/etc')">true</IsOSX>
+    <IsLinux Condition="Exists ('/proc') and Exists ('/etc/')">true</IsLinux>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,15 +16,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="lib\win32\libiconv2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="lib\win32\libintl3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="lib\win32\tre4.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Win32NativeTREFiles Include="$(MSBuildThisFileDirectory)\lib\win32\*.dll"/>
+    <Content Include="@(Win32NativeTREFiles)" Condition="'$(OS)' != 'Unix'" CopyToOutputDirectory="PreserveNewest">
+        <Link>%(Filename)%(Extension)</Link>
+    </Content>
   </ItemGroup>
+  
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
 </Project>
