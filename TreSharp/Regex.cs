@@ -130,7 +130,7 @@ namespace TreSharp
             {
                 pinnedArray.Free();
             }
-            return new Match(match, pmatch, input);
+            return new Match(this, options, match, pmatch, input);
         }
 
         /// <summary>

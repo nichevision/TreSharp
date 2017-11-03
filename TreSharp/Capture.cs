@@ -15,17 +15,19 @@ namespace TreSharp
         /// <summary>
         /// Get the index where the match begins.
         /// </summary>
-        public int Index {
+        public int Index
+        {
             get;
-            protected set;
+            internal set;
         }
 
         /// <summary>
         /// Get the number of characters that matched.
         /// </summary>
-        public int Length {
+        public int Length
+        {
             get;
-            protected set;
+            internal set;
         }
 
         /// <summary>
@@ -37,7 +39,14 @@ namespace TreSharp
             {
                 if (_value == null)
                 {
-                    _value = SourceString.Substring(_match.rm_so, _match.rm_eo - _match.rm_so);
+                    if (Length > 0)
+                    {
+                        _value = SourceString.Substring(Index, Length);
+                    }
+                    else
+                    {
+                        _value = string.Empty;
+                    }
                 }
                 return _value;
             }
@@ -49,7 +58,7 @@ namespace TreSharp
         public string SourceString
         {
             get;
-            protected set;
+            internal set;
         }
 
         protected Capture() { }

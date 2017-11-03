@@ -13,11 +13,12 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
     <Win32NativeTREFiles Include="$(MSBuildThisFileDirectory)\lib\win32\*.dll" />
-    <Content Include="@(Win32NativeTREFiles)" Condition="'$(OS)' != 'Unix'" CopyToOutputDirectory="PreserveNewest">
+    <Content Include="@(Win32NativeTREFiles)" Condition="'$(OS)' != 'Unix'" CopyToOutputDirectory="Always">
         <Link>%(Filename)%(Extension)</Link>
     </Content>
   </ItemGroup>

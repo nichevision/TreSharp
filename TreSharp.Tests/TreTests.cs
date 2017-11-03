@@ -17,6 +17,55 @@ namespace TreSharp.Tests
         }
 
         [TestMethod]
+        public void TestNextMatchReturnsAllMatches()
+        {
+            using (var rgx = new Regex("ABCD"))
+            {
+                var first = rgx.Match("ABCDABCDABCDABCD");
+                var second = first.NextMatch();
+                var third = second.NextMatch();
+                var fourth = third.NextMatch();
+                var fifth = fourth.NextMatch();
+
+                Assert.AreEqual(0, first.Index);
+                Assert.AreEqual(4, second.Index);
+                Assert.AreEqual(8, third.Index);
+                Assert.AreEqual(12, fourth.Index);
+                Assert.IsFalse(fifth.Success);
+            }
+        }
+
+        [TestMethod]
+        public void TestCanStartNextMatchInsidePreviousMatch()
+        {
+            using (var rgx = new Regex("AAAA"))
+            {
+                var first = rgx.Match("AAAAAAAAAAAA");
+                var second = first.NextMatch(false);
+                var third = second.NextMatch(false);
+
+                Assert.AreEqual(0, first.Index);
+                // If we did not specify startAfterEntireCurrentMatch = false, the index of the
+                // second match would be 4 instead of 1.
+                Assert.AreEqual(1, second.Index, "Second match has unexpected index.");
+                Assert.AreEqual(2, third.Index, "Third match has unexpected index.");
+            }
+        }
+
+        [TestMethod]
+        public void TestNextMatchSetsCorrectMatchGroupIndices()
+        {
+            using (var rgx = new Regex("AB(CD)"))
+            {
+                var first = rgx.Match("ABCDABCD");
+                var second = first.NextMatch();
+
+                Assert.AreEqual(2, first.Groups[1].Index, "Incorrect subgroup match index.");
+                Assert.AreEqual(6, second.Groups[1].Index, "Incorrect subgroup match index.");
+            }
+        }
+
+        [TestMethod]
         public void TestSimpleMatchFail()
         {
             using (var rgx = new Regex("jello world"))
@@ -179,6 +228,16 @@ namespace TreSharp.Tests
             using (var rgx = new Regex("ABCDEFG"))
             {
                 Assert.IsFalse(rgx.IsMatch("ABYDEFG"), "Unexpected match.");
+
+                // If we allow approximate matching, but match still fails, expect
+                // certain results in properties of that match.
+                var failApproximateMatch = rgx.Match("ABYDEFQ", new TreOptions() { MaxCost = 1 });
+                Assert.IsFalse(failApproximateMatch.Success);
+                Assert.IsFalse(failApproximateMatch.IsApproximate);
+                Assert.AreEqual(0, failApproximateMatch.Cost);
+                Assert.AreEqual(0, failApproximateMatch.NumberOfDeletions);
+                Assert.AreEqual(0, failApproximateMatch.NumberOfInsertions);
+                Assert.AreEqual(0, failApproximateMatch.NumberOfSubstitutions);
 
                 Assert.IsTrue(
                     rgx.IsMatch("ABYDEFG", new TreOptions()
