@@ -11,7 +11,11 @@ namespace TreSharp
     /// </summary>
     public static class Tre
     {
-        public const string TreLibrary = "tre4.dll";
+#if x86
+        public const string TreLibrary = "lib/win/x86/tre.dll";
+#elif x64
+        public const string TreLibrary = "lib/win/x64/tre.dll";
+#endif
 
         /// <summary>
         /// Check the specified error code, raised by use of the specified regex, and raise
@@ -182,7 +186,7 @@ namespace TreSharp
         /// <param name="regex"></param>
         /// <param name="cflags"></param>
         /// <returns></returns>
-        [DllImport(TreLibrary, CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        [DllImport(TreLibrary, EntryPoint = "tre_regcomp", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern TreErrorCode regcomp(
             ref regex_t preg,
             string regex,
@@ -199,7 +203,7 @@ namespace TreSharp
         /// <param name="errorBuffer"></param>
         /// <param name="errbuf_size"></param>
         /// <returns></returns>
-        [DllImport(TreLibrary, CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        [DllImport(TreLibrary, EntryPoint = "tre_regerror", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern UIntPtr regerror(
             TreErrorCode code,
             ref regex_t preg,
@@ -211,7 +215,7 @@ namespace TreSharp
         /// Free memory used by the specified compiled regex.
         /// </summary>
         /// <param name="preg"></param>
-        [DllImport(TreLibrary, CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        [DllImport(TreLibrary, EntryPoint = "tre_regfree", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern void regfree(
             ref regex_t preg
         );
@@ -220,7 +224,7 @@ namespace TreSharp
         /// Sets approximate match parameters to default.
         /// </summary>
         /// <param name="parameters"></param>
-        [DllImport(TreLibrary, CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        [DllImport(TreLibrary, EntryPoint = "tre_regaparams_default", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern void regaparams_default(
             ref regaparams_t parameters
         );
@@ -235,7 +239,7 @@ namespace TreSharp
         /// <param name="pmatch">A buffer to store match subdata.</param>
         /// <param name="flags">Bitwise-or of TRESearchOptions.</param>
         /// <returns></returns>
-        [DllImport(TreLibrary, CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        [DllImport(TreLibrary, EntryPoint = "tre_regexec", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern TreErrorCode regexec(
             ref regex_t preg,
             string input,
@@ -253,7 +257,7 @@ namespace TreSharp
         /// <param name="parameters">Parameters for the approximate match.</param>
         /// <param name="flags">Bitwise-or of TRESearchOptions.</param>
         /// <returns></returns>
-        [DllImport(TreLibrary, CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        [DllImport(TreLibrary, EntryPoint = "tre_regaexec", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern TreErrorCode regaexec(
             ref regex_t preg,
             string input,

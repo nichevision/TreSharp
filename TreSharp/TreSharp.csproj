@@ -9,6 +9,7 @@
     
     <IsOSX Condition="Exists('/Library/Frameworks') and Exists ('/etc')">true</IsOSX>
     <IsLinux Condition="Exists ('/proc') and Exists ('/etc/')">true</IsLinux>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,15 +17,53 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD1_1;x86</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD1_1;x64</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <DefineConstants>TRACE;RELEASE;NETSTANDARD1_1;x86</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DefineConstants>TRACE;RELEASE;NETSTANDARD1_1;x64;</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Win32NativeTREFiles Include="$(MSBuildThisFileDirectory)\lib\win32\*.dll" />
+    <Win32NativeTREFiles Include="$(MSBuildThisFileDirectory)\lib\win\*" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)\lib\win\**\*">
+        <DestinationFolders>$(MainOutputDirectory)</DestinationFolders>
+    </CopyFileToFolders>
+    
     <Content Include="@(Win32NativeTREFiles)" Condition="'$(OS)' != 'Unix'" CopyToOutputDirectory="Always">
-        <Link>%(Filename)%(Extension)</Link>
+      <Link>%(Filename)%(Extension)</Link>
     </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="lib\win\*.*" CopyToOutputDirectory="Always" />
+    <Content Include="lib\win\**" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="GitVersionTask" Version="4.0.0-beta0012" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="C:\src\MixtureAce\NGSTools\ngs.csharp\TreSharp\TRESharp\lib\win\libiconv2.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\src\MixtureAce\NGSTools\ngs.csharp\TreSharp\TRESharp\lib\win\libintl3.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
