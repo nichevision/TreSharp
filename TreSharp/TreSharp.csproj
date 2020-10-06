@@ -1,12 +1,7 @@
-﻿<Project>
-
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
-    <AssemblyName>TreSharp</AssemblyName>
-    <RootNamespace>TreSharp</RootNamespace>
-    
     <IsOSX Condition="Exists('/Library/Frameworks') and Exists ('/etc')">true</IsOSX>
     <IsLinux Condition="Exists ('/proc') and Exists ('/etc/')">true</IsLinux>
     <Platforms>AnyCPU;x64;x86</Platforms>
@@ -52,20 +47,12 @@
     <Content Include="lib\win\*.*" CopyToOutputDirectory="Always" />
     <Content Include="lib\win\**" CopyToOutputDirectory="Always" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="4.0.0-beta0012" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="C:\src\MixtureAce\NGSTools\ngs.csharp\TreSharp\TRESharp\lib\win\libiconv2.dll">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-    <Content Update="C:\src\MixtureAce\NGSTools\ngs.csharp\TreSharp\TRESharp\lib\win\libintl3.dll">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
   
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.3.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>

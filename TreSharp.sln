@@ -5,24 +5,37 @@ VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreSharp", "TRESharp\TreSharp.csproj", "{39AEFB57-DBCC-4F40-8C1A-578331467B5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreSharp.Tests", "TRESharp.Tests\TreSharp.Tests.csproj", "{BF7E847B-8F23-4069-8574-9B8E652AB5E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreSharp.Tests", "TRESharp.Tests\TreSharp.Tests.csproj", "{BF7E847B-8F23-4069-8574-9B8E652AB5E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{39AEFB57-DBCC-4F40-8C1A-578331467B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39AEFB57-DBCC-4F40-8C1A-578331467B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39AEFB57-DBCC-4F40-8C1A-578331467B5D}.Debug|x64.ActiveCfg = Debug|x64
+		{39AEFB57-DBCC-4F40-8C1A-578331467B5D}.Debug|x64.Build.0 = Debug|x64
 		{39AEFB57-DBCC-4F40-8C1A-578331467B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39AEFB57-DBCC-4F40-8C1A-578331467B5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39AEFB57-DBCC-4F40-8C1A-578331467B5D}.Release|x64.ActiveCfg = Release|x64
+		{39AEFB57-DBCC-4F40-8C1A-578331467B5D}.Release|x64.Build.0 = Release|x64
 		{BF7E847B-8F23-4069-8574-9B8E652AB5E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BF7E847B-8F23-4069-8574-9B8E652AB5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF7E847B-8F23-4069-8574-9B8E652AB5E6}.Debug|x64.ActiveCfg = Debug|x64
+		{BF7E847B-8F23-4069-8574-9B8E652AB5E6}.Debug|x64.Build.0 = Debug|x64
 		{BF7E847B-8F23-4069-8574-9B8E652AB5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF7E847B-8F23-4069-8574-9B8E652AB5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF7E847B-8F23-4069-8574-9B8E652AB5E6}.Release|x64.ActiveCfg = Release|x64
+		{BF7E847B-8F23-4069-8574-9B8E652AB5E6}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80995D4F-ECAD-412D-9A3C-953C79BE231C}
 	EndGlobalSection
 EndGlobal
