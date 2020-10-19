@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>TreSharp</id>
+    <version>0.0</version>
+    <description>.NET bindings for the TRE approximate regex matching library (https://laurikari.net/tre/).</description>
+    <authors>NicheVision</authors>
+    <owners>NicheVision</owners>
+    <license type="file">LICENSE</license>
+    <copyright>Copyright NicheVision 2020</copyright>
+    
+    <dependencies>
+      <group targetFramework=".NETStandard1.1"></group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="TreSharp.props" target="build" />
+    <file src="..\LICENSE" target="LICENSE" />
+    <file src="..\THIRD-PARTY-LICENSE" target="THIRD-PARTY-LICENSE" />
+
+    <file src="../TreSharp/bin/x64/Release/netstandard1.1/TreSharp.dll" target="lib/netstandard1.1/x64" />
+    
+    <file src="../TreSharp/bin/x86/Release/netstandard1.1/TreSharp.dll" target="lib/netstandard1.1/x86" />
+    
+    <file src="..\TreSharp\lib\**" target="native/lib" />
+  </files>
+</package>
