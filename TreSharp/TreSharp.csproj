@@ -5,6 +5,10 @@
     <IsOSX Condition="Exists('/Library/Frameworks') and Exists ('/etc')">true</IsOSX>
     <IsLinux Condition="Exists ('/proc') and Exists ('/etc/')">true</IsLinux>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <Authors>NicheVision Inc</Authors>
+    <Company>NicheVision Inc</Company>
+    <PackageProjectUrl>https://github.com/nichevision/TreSharp</PackageProjectUrl>
+    <Copyright>Copyright NicheVision Inc © 2020</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
