@@ -15,6 +15,8 @@ namespace TreSharp
         public const string TreLibrary = "lib/win/x86/tre.dll";
 #elif x64
         public const string TreLibrary = "lib/win/x64/tre.dll";
+#else
+    #error x86 or x64 must be specified as an msbuild property
 #endif
 
         /// <summary>
