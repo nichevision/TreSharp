@@ -10,8 +10,14 @@
     <copyright>Copyright NicheVision 2020</copyright>
     
     <dependencies>
-      <group targetFramework=".NETStandard1.1"></group>
+      <group targetFramework=".NETStandard1.1" />
     </dependencies>
+
+    <references>
+      <group targetFramework="netstandard1.1">
+        <reference file="TreSharp.dll" />
+      </group>
+  </references>
   </metadata>
   <files>
     <file src="TreSharp.props" target="build" />
@@ -19,8 +25,12 @@
     <file src="..\THIRD-PARTY-LICENSE" target="THIRD-PARTY-LICENSE" />
 
     <file src="../TreSharp/bin/x64/Release/netstandard1.1/TreSharp.dll" target="lib/netstandard1.1/x64" />
-    
     <file src="../TreSharp/bin/x86/Release/netstandard1.1/TreSharp.dll" target="lib/netstandard1.1/x86" />
+    <!-- Use AnyCPU build as the reference to avoid mismatched architecture warnings. -->
+    <file src="../TreSharp/bin/Release/netstandard1.1/TreSharp.dll" target="ref/netstandard1.1" />
+
+    <file src="../TreSharp/bin/x64/Release/netstandard1.1/TreSharp.dll" target="runtimes/win-x64/lib/netstandard1.1" />
+    <file src="../TreSharp/bin/x86/Release/netstandard1.1/TreSharp.dll" target="runtimes/win-x86/lib/netstandard1.1" />
     
     <file src="..\TreSharp\lib\**" target="native/lib" />
   </files>
