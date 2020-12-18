@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <ItemGroup>
         <Reference Include="TreSharp.dll">
-          <HintPath>$(MSBuildThisFileDirectory)..\lib\netstandard1.1\$(Platform)\TreSharp.dll</HintPath>
+          <HintPath>$(MSBuildThisFileDirectory)..\lib\$(TargetFramework)\$(Platform)\TreSharp.dll</HintPath>
         </Reference>
         <Content Include="$(MSBuildThisFileDirectory)..\native\**" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
