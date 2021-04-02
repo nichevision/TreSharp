@@ -13,6 +13,7 @@
     <dependencies>
       <group targetFramework=".NETStandard1.1" />
       <group targetFramework=".net461" />
+      <group targetFramework=".net5.0" />
     </dependencies>
 
     <references>
@@ -22,7 +23,7 @@
       <group targetFramework="net461">
         <reference file="TreSharp.dll" />
       </group>
-  </references>
+    </references>
   </metadata>
   <files>
     <file src="TreSharp.props" target="build" />
@@ -31,8 +32,13 @@
 
     <file src="../TreSharp/bin/x64/Release/netstandard1.1/TreSharp.dll" target="lib/netstandard1.1/x64" />
     <file src="../TreSharp/bin/x86/Release/netstandard1.1/TreSharp.dll" target="lib/netstandard1.1/x86" />
+    <file src="../TreSharp/bin/Release/netstandard1.1/TreSharp.dll" target="lib/netstandard1.1/AnyCPU" />
     <file src="../TreSharp/bin/x64/Release/net461/TreSharp.dll" target="lib/net461/x64" />
     <file src="../TreSharp/bin/x86/Release/net461/TreSharp.dll" target="lib/net461/x86" />
+    <file src="../TreSharp/bin/Release/net461/TreSharp.dll" target="lib/net461/AnyCPU" />
+    <file src="../TreSharp/bin/x64/Release/net5.0/TreSharp.dll" target="lib/net5.0/x64" />
+    <file src="../TreSharp/bin/x86/Release/net5.0/TreSharp.dll" target="lib/net5.0/x86" />
+    <file src="../TreSharp/bin/Release/net5.0/TreSharp.dll" target="lib/net5.0/AnyCPU" />
     
     <file src="..\TreSharp\lib\**" target="native/lib" />
   </files>
